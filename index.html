@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>고지사항 입력 폼</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mx-auto p-8">
+    <h1 class="text-3xl font-semibold mb-8">고지사항 입력</h1>
+    
+    <form id="disclosure-form" action="https://script.google.com/macros/s/AKfycbwx1Cj_gmuNeE4C4c-8AHBjFfhA4Zvbd9I0ftgbyLVV1bFWC5iHAsCtYKZlH7BqJxk4/exec" method="POST">
+      <div class="mb-4">
+        <label for="name" class="block">이름</label>
+        <input type="text" id="name" name="name" class="w-full p-2 border border-gray-300 rounded" required>
+      </div>
+
+      <div class="mb-4">
+        <label for="dob" class="block">생년월일</label>
+        <input type="date" id="dob" name="dob" class="w-full p-2 border border-gray-300 rounded" required>
+      </div>
+
+      <div class="mb-4">
+        <label for="occupation" class="block">직업</label>
+        <input type="text" id="occupation" name="occupation" class="w-full p-2 border border-gray-300 rounded" required>
+      </div>
+
+      <!-- 고지사항 4번 -->
+      <div class="mb-4">
+        <label for="question4" class="block">최근 5년 이내 10대 질병으로 진단 및 치료 받으신 적이 있으신가요?</label>
+        <div class="flex space-x-4">
+          <label><input type="radio" name="question4" value="yes" class="mr-2" required> 예</label>
+          <label><input type="radio" name="question4" value="no" class="mr-2"> 아니오</label>
+        </div>
+        <div class="mt-2" id="question4-details" style="display:none;">
+          <label for="question4-details-input" class="block">날짜, 병명, 치료내용</label>
+          <textarea id="question4-details-input" name="question4_details" class="w-full p-2 border border-gray-300 rounded"></textarea>
+        </div>
+      </div>
+
+      <!-- 고지사항 5번 -->
+      <div class="mb-4">
+        <label for="question5" class="block">최근 10년 이내 입원이나 수술을 하신 적이 있으신가요?</label>
+        <div class="flex space-x-4">
+          <label><input type="radio" name="question5" value="yes" class="mr-2" required> 예</label>
+          <label><input type="radio" name="question5" value="no" class="mr-2"> 아니오</label>
+        </div>
+        <div class="mt-2" id="question5-details" style="display:none;">
+          <label for="question5-details-input" class="block">날짜, 병명, 치료내용</label>
+          <textarea id="question5-details-input" name="question5_details" class="w-full p-2 border border-gray-300 rounded"></textarea>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded">제출</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // '예' 선택 시 세부사항 입력란 표시
+    document.querySelectorAll('input[name="question4"]').forEach(input => {
+      input.addEventListener('change', function() {
+        document.getElementById('question4-details').style.display = this.value === 'yes' ? 'block' : 'none';
+      });
+    });
+
+    document.querySelectorAll('input[name="question5"]').forEach(input => {
+      input.addEventListener('change', function() {
+        document.getElementById('question5-details').style.display = this.value === 'yes' ? 'block' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>
